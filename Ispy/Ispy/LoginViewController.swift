@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
+    var passwordField: PasswordField?
     
     // MARK: - Outlets
     @IBOutlet var signUpButton: UIButton!

@@ -66,7 +66,7 @@ class PasswordField: UIControl {
     private var loginTextField: UITextField = UITextField()
     private var loginLabel: UILabel = UILabel()
     private var segmentedControl: UISegmentedControl = UISegmentedControl(items: segmentedItems)
-    let loginButton: UIButton = UIButton()
+    private var loginButton: UIButton = UIButton()
     
     
     
@@ -88,22 +88,33 @@ class PasswordField: UIControl {
         passwordTextField.resignFirstResponder()
         sendActions(for: .valueChanged)
     }
-//
-//    func segmentChanged() {
-//        if segmentedControl.selectedSegmentIndex == 0 {
-//            loginType = .signUp
-//            logInViewController?.signUpButton.setTitle("Sign Up",
-//                                  for: .normal)
-//        } else {
-//            loginType = .logIn
-//            logInViewController?.signUpButton.setTitle("Log in",
-//                                  for: .normal)
-//        }
-//    }
+
+    @objc func segmentChanged() {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            loginType = .signUp
+            logInViewController?.signUpButton.setTitle("Sign Up",
+                                  for: .normal)
+        } else {
+            loginType = .logIn
+            logInViewController?.signUpButton.setTitle("Log in",
+                                  for: .normal)
+        }
+    }
 
     // MARK: - Set Up
     func setup() {
         backgroundColor = UIColor.darkGray
+        
+        // Login Button
+        loginButton.backgroundColor = .blue
+        loginButton.layer.cornerRadius = 12
+        loginButton.setTitle("Sign Up", for: .normal)
+        loginButton.titleLabel?.textColor = .black
+        addSubview(loginButton)
+        NSLayoutConstraint.activate([
+            loginButton.topAnchor.constraint(equalTo: bottomAnchor, constant: 20),
+            loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0)
+        ])
         
         // Segmented Control set up
         segmentedControl.backgroundColor = UIColor.link
@@ -119,7 +130,7 @@ class PasswordField: UIControl {
             segmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             segmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -standardMargin)
         ])
-//        segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .touchUpInside)
+        segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .touchUpInside)
 
         
         

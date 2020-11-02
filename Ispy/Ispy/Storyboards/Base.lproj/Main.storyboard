@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,7 +22,7 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maO-to-Bmm">
-                                <rect key="frame" x="132" y="395" width="150" height="50"/>
+                                <rect key="frame" x="132" y="425" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="6ex-Zp-9Xb"/>
@@ -44,7 +45,7 @@
                             <constraint firstItem="w5g-bN-QTF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="Ela-Bt-Qla"/>
                             <constraint firstItem="w5g-bN-QTF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YCI-PZ-0z5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w5g-bN-QTF" secondAttribute="trailing" constant="20" id="YHM-v2-04G"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerY" secondItem="maO-to-Bmm" secondAttribute="bottom" constant="30" id="bvK-bd-wvy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerY" secondItem="maO-to-Bmm" secondAttribute="bottom" id="bvK-bd-wvy"/>
                             <constraint firstItem="maO-to-Bmm" firstAttribute="centerX" secondItem="w5g-bN-QTF" secondAttribute="centerX" id="fdH-co-ulA"/>
                         </constraints>
                     </view>
@@ -71,23 +72,61 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem title="Profile" image="person.fill" catalog="system" id="qQ6-0N-nMV">
-                                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="badgeColor" red="0.0" green="0.042062141248398355" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tabBarItem>
                                     <tabBarItem title="Schedule" image="calendar" catalog="system" id="oir-bl-jnb">
                                         <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tabBarItem>
                                     <tabBarItem title="Chat" image="message.fill" catalog="system" id="3Vu-H8-hg5"/>
+                                    <tabBarItem title="Pay stubs" image="dollarsign.square.fill" catalog="system" id="KOY-Ga-WCI"/>
                                 </items>
+                                <color key="selectedImageTintColor" red="0.1249030161" green="0.13518999570000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tabBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Knf-DO-DU1"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Zh3-5R-vdk"/>
+                    <navigationItem key="navigationItem" id="Zh3-5R-vdk">
+                        <barButtonItem key="leftBarButtonItem" image="arrow.clockwise" catalog="system" id="sOB-L7-l75">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="qrcode" catalog="system" id="m5Z-WE-L3P">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="9rP-Gx-FGk" kind="show" identifier="QRSegue" id="uqS-We-8kH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhp-K3-C0Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1593" y="127"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="USd-xK-cGb">
+            <objects>
+                <viewController id="9rP-Gx-FGk" customClass="QRScannerViewController" customModule="Ispy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aEC-a3-DM2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iGy-Oh-22B" customClass="CameraPreviewView" customModule="Ispy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mIU-bM-EaC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4SX-kU-kS8"/>
+                    <connections>
+                        <outlet property="cameraView" destination="iGy-Oh-22B" id="awS-zz-acO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fuL-eC-Q3e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1592.753623188406" y="-546.42857142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Fs-aO-NvZ">
@@ -110,8 +149,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="dollarsign.square.fill" catalog="system" width="128" height="114"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="qrcode" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
